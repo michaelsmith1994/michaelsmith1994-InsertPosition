@@ -1,4 +1,4 @@
-
+import java.lang.reflect.Array;
 
 public class InsertPosition {
 
@@ -15,6 +15,23 @@ public class InsertPosition {
      * @return return the index that a number should be inserted into a sorted array.
      */
     public int searchInsert(int[] nums, int target) {
-        return -1;
+        //Using binary search
+        int left = 0;
+        int right = nums.length - 1;
+
+        while(left <= right){
+            int mid = left + (right - left) / 2; //Calculate a mid point.
+            if(nums[mid] == target){ //If mid equal target return mid.
+                return mid;
+            } else if (nums[mid] < target){ 
+                // If mid is smaller than the target, select the right half by moving the left start.
+                left = mid + 1; 
+            } else {
+                // Else select the left side by moving the right end stop. 
+                right = mid - 1;
+            }
+        }
+        return left;
+
     }
 }
